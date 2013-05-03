@@ -11,5 +11,7 @@ object EulerLong {
 
   implicit def intToEulerLong(value: Int) = new EulerLong(value)
 
-  val primes = 2 #:: Stream.from(3, 2).filter {_.isPrime}
+  private def fromLong(start: Long, step: Int): Stream[Long] = start #:: fromLong(start + step, step)
+
+  val primes: Stream[Long] = 2 #:: fromLong(3, 2).filter {_.isPrime}
 }
