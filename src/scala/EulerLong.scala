@@ -18,7 +18,7 @@ object EulerLong {
   // require us to work with numbers that don't fit in an Int).
   private def fromLong(start: Long, step: Int): Stream[Long] = start #:: fromLong(start + step, step)
 
-  // Infinite stream on all prime numbers. I probably wouldn't do that in production code as it's a memory leak waiting
-  // to happen, but it's nice for simple scripts.
+  // Stream of all prime numbers. I probably wouldn't do that in production code as it's a memory leak waiting to
+  // happen, but it's nice for simple scripts.
   val primes: Stream[Long] = 2 #:: fromLong(3, 2).filter {_.isPrime}
 }
