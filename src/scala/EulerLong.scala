@@ -5,7 +5,7 @@ class EulerLong(val n: Long) {
   import EulerLong._
 
   // Checks whether the current instance is a prime number.
-  def isPrime: Boolean = (n > 1) && (primes.takeWhile {_ < scala.math.sqrt(n)}.forall {n % _ != 0})
+  def isPrime: Boolean = (n > 1) && (primes.takeWhile {_ <= scala.math.sqrt(n)}.forall {n % _ != 0})
 }
 
 object EulerLong {

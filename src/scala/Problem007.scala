@@ -6,5 +6,5 @@
 
 import EulerLong._
 
-assert(primes(6) == 13)
-println(primes(10001))
+assert(primes(5) == 13)
+println(primes(10000))
