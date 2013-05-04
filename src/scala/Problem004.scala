@@ -5,12 +5,16 @@
  * Find the largest palindrome made from the product of two 3-digit numbers.
  */
 
+// Checks whether n is a palindrome.
 def isPalindrome(n: Int) = {
-  val m = n.toString()
+  def isPalindromeR(n: Int, m: Int): Int = 
+    if(n == 0) m
+    else isPalindromeR(n / 10, m * 10 + n % 10)
 
-  m == m.reverse
+  isPalindromeR(n, 0) == n
 }
 
-val palindromes = for(i <- 0 to 999; j <- 0 to 999; k = i * j; if isPalindrome(k)) yield k
+// We keep j < i to make sure we don't check for the same pair more than once (2 * 3 and 3 * 2, for example).
+val palindromes = for(i <- 100 to 999; j <- 100 to i; k = i * j; if isPalindrome(k)) yield k
 
 println(palindromes.max)
