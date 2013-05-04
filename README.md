@@ -1,3 +1,3 @@
-Scripts used to solve http://projecteuler.net
+Scripts used to solve [Project Euler](http://projecteuler.net) problems.
 
 Profile: [nrinaudo](http://projecteuler.net/progress=nrinaudo)
