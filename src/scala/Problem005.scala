@@ -17,4 +17,6 @@ def findFirstCandidate(max: Int) = {
   findR(1, max)
 }
 
+assert(findFirstCandidate(10) == 2520)
+
 println(findFirstCandidate(20))
