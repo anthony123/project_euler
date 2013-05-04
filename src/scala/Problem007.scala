@@ -6,16 +6,5 @@
 
 import EulerLong._
 
-def findNthPrime(n: Int) = {
-  def findR(n: Int, count: Int): Int = {
-    if(n.isPrime) {
-      if(count == 1) n
-      else findR(n + 1, count - 1)
-    }
-    else findR(n + 1, count)
-  }
-
-  findR(2, n)
-}
-
-println(findNthPrime(10001))
+assert(primes(6) == 13)
+println(primes(10001))
