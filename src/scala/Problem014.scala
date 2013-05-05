@@ -30,8 +30,12 @@ def lengthFor(n: Long, cache: Map[Long, Int]): Int = {
 }
 
 val cache = Map(1l -> 1)
+
+val time = System.currentTimeMillis
+
 (1 to 1000000).foldLeft(0) {(max, n) => math.max(max, lengthFor(n, cache))}
 
 // At this point, cache contains all possible values, look for the maximum one.
 println(cache.maxBy(_._2)._1)
+println("Computed in %dms".format(System.currentTimeMillis - time))
 
