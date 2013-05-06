@@ -15,6 +15,7 @@ def isPalindrome(n: Int) = {
 }
 
 // We keep j < i to make sure we don't check for the same pair more than once (2 * 3 and 3 * 2, for example).
-val palindromes = for(i <- 100 to 999; j <- 100 to i; k = i * j; if isPalindrome(k)) yield k
-
-println(palindromes.max)
+EulerTimer {
+  val palindromes = for(i <- 100 to 999; j <- 100 to i; k = i * j; if isPalindrome(k)) yield k
+  palindromes.max
+}

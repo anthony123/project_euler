@@ -21,4 +21,4 @@ def solveFor(n: Int) = squareSum(n) - sumSquare(n)
 
 assert(solveFor(10) == 2640)
 
-println(solveFor(100))
+EulerTimer {solveFor(100)}

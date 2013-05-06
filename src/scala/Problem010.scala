@@ -8,4 +8,5 @@ import EulerLong._
 def sumPrimes(n: Int) = primes.takeWhile(_ < n).sum
 
 assert(sumPrimes(10) == 17)
-println(sumPrimes(2000000))
+
+EulerTimer {sumPrimes(2000000)}

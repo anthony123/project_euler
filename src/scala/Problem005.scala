@@ -19,4 +19,4 @@ def findFirstCandidate(max: Int) = {
 
 assert(findFirstCandidate(10) == 2520)
 
-println(findFirstCandidate(20))
+EulerTimer {findFirstCandidate(20)}

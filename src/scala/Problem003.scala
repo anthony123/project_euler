@@ -23,5 +23,5 @@ def findMaxPrimeFactor(n: Long) = {
   findR(n, primes, Nil).max
 }
 
-println(findMaxPrimeFactor(600851475143l))
+EulerTimer {findMaxPrimeFactor(600851475143l)}
 

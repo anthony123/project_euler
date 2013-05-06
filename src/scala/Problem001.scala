@@ -10,4 +10,4 @@ def sumMatches(range: Range) = range.filter(x => x % 3 == 0 || x % 5 == 0).foldL
 
 assert(sumMatches(0 until 10) == 23)
 
-println(sumMatches(0 until 1000))
+EulerTimer {sumMatches(0 until 1000)}

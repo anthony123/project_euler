@@ -35,5 +35,5 @@ def triangles(n: Long = 0, m: Long = 1)(eval: (Long) => Boolean): Long = {
   else triangles(o, m + 1)(eval)
 }
 
-println(triangles() {countDivisors(_) >= 500})
+EulerTimer {triangles() {countDivisors(_) >= 500}}
 

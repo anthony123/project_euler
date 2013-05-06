@@ -21,4 +21,4 @@ def collectFibonnacci(max: Int)(accept: (Int => Boolean)) = {
   collectR(1, 2, 2 :: Nil)
 }
 
-println(collectFibonnacci(4000000) {_ % 2 == 0}.sum)
+EulerTimer {collectFibonnacci(4000000) {_ % 2 == 0}.sum}

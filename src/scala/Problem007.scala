@@ -7,4 +7,5 @@
 import EulerLong._
 
 assert(primes(5) == 13)
-println(primes(10000))
+
+EulerTimer {primes(10000)}

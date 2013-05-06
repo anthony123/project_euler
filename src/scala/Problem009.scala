@@ -8,6 +8,8 @@
  * Find the product abc.
  */
 
+// TODO: this doesn't stop once the result has been found.
 for(a <- 1 to 998; b <- a + 1 to 999; c = 1000 - a - b; if a * a + b * b == c * c) {
   println(a * b * c)
 }
+
