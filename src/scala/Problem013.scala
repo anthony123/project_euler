@@ -255,5 +255,4 @@ object LongNumber {
   implicit def apply(value: String) = new LongNumber(value.toList.reverse.map {_ - 48})
 }
 
-// TODO: rework this so that truncate(10) can be used by EulerTimer.
-println(data.foldLeft(LongNumber("0")) {_ + _}.truncate(10))
+EulerTimer {data.foldLeft(LongNumber("0")) {_ + _}.truncate(10)}
