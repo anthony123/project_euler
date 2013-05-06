@@ -8,8 +8,12 @@
  * Find the product abc.
  */
 
-// TODO: this doesn't stop once the result has been found.
-for(a <- 1 to 998; b <- a + 1 to 999; c = 1000 - a - b; if a * a + b * b == c * c) {
-  println(a * b * c)
+def solve(a: Int = 1, b: Int = 1): Int = {
+  val c = 1000 - a - b
+  if(a * a + b * b == c * c) a * b * c
+  else if(b < 999) solve(a, b + 1)
+  else if(a < 999) solve(a + 1, 1)
+  else throw new NoSuchElementException
 }
 
+EulerTimer {solve()}
