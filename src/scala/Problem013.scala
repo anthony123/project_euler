@@ -204,55 +204,5 @@ val data = List("37107287533902102798797998220837590246510135740250",
                 "20849603980134001723930671666823555245252804609722",
                 "53503534226472524250874054075591789781264330331690")
 
-// Simple utility class for adding arbitrary long numbers.
-// n is the little endian list of the number's digit.
-class LongNumber(val n: List[Int]) {
-  def +(m: LongNumber) = {
-    // Sums a.head, b.head and c, returns the result and remaining parts of a and b.
-    def sum(a: List[Int], b: List[Int], c: Int) = (a, b) match {
-      case (Nil, bh :: bt)      => (bh + c, Nil, bt)
-      case (ah :: at, Nil)      => (ah + c, at, Nil)
-      case (ah :: at, bh :: bt) => (ah + bh + c, at, bt)
 
-      // This shouldn't happend. If it does, there's a bug somewhere.
-      case _                    => throw new IllegalStateException
-    }
-
-    // a:      first operand's internal list.
-    // b:      second operand's internal list.
-    // c:      carry over.
-    // result: result's internal list (reversed).
-    def recur(a: List[Int], b: List[Int], c: Int, result: List[Int]): List[Int] = (a, b) match {
-      // End cases: both lists are empty. We need to reverse the result, as digits are added to the head of the list.
-      case (Nil, Nil) if (c != 0) => (c :: result).reverse
-      case (Nil, Nil)             => result.reverse
-
-      // Normal case.
-      case _ => {
-        val (d, at, bt) = sum(a, b, c)
-        if(d >= 10) recur(at, bt, 1, (d % 10) :: result)
-        else recur(at, bt, 0, d :: result)
-      }
-    }
-
-    new LongNumber(recur(n, m.n, 0, Nil))
-  }
-
-  // Keeps the first 'count' digits.
-  def truncate(count: Int) =  {
-    require(count > 0)
-    new LongNumber(n.slice(n.length - count, n.length))
-  }
-
-  // Pretty printing.
-  override def toString() = n.reverse.mkString("")
-}
-
-// Implicit conversions used to make the rest of the code more readable.
-object LongNumber {
-    // Implicit conversions
-  import scala.language.implicitConversions
-  implicit def apply(value: String) = new LongNumber(value.toList.reverse.map {_ - 48})
-}
-
-EulerTimer {data.foldLeft(LongNumber("0")) {_ + _}.truncate(10)}
+EulerTimer {data.foldLeft(LongNumber(0)) {_ + _}.truncate(10)}
