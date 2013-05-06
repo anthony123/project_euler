@@ -61,7 +61,7 @@ def upwardDiagMax(grid: List[List[Int]]) = {
 
   max
 }
-    
+
 val grid = List(List( 8,  2, 22, 97, 38, 15,  0, 40,  0, 75,  4,  5,  7, 78, 52, 12, 50, 77, 91,  8),
                 List(49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48,  4, 56, 62,  0),
                 List(81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30,  3, 49, 13, 36, 65),
@@ -83,12 +83,6 @@ val grid = List(List( 8,  2, 22, 97, 38, 15,  0, 40,  0, 75,  4,  5,  7, 78, 52,
                 List(20, 73, 35, 29, 78, 31, 90,  1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57,  5, 54),
                 List( 1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52,  1, 89, 19, 67, 48))
 
-// TODO: print the actual max, not all the intermediate values.
 // TODO: additionally, I'm not satisfied with the diagonal handling, there has to be a more functional way of doing
 // this.
-println(horizontalMax(grid))
-println(verticalMax(grid))
-println(downwardDiagMax(grid))
-println(upwardDiagMax(grid))
-
-
+EulerTimer {List(horizontalMax(grid), verticalMax(grid), downwardDiagMax(grid), upwardDiagMax(grid)).max}
