@@ -4,6 +4,4 @@
  * What is the sum of the digits of the number 2^1000?
  */
 
-EulerTimer {
-  LongNumber(2).pow(1000).n.sum
-}
+EulerTimer {LongNumber(2).pow(1000).n.sum}
