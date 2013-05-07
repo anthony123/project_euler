@@ -46,6 +46,10 @@ object LongNumber {
     new LongNumber(applyR(value))
   }
 
+
+
+  // - Multiplication --------------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   // Multiplies the content of the specified lists.
   private def times(a: List[Int], b: List[Int]) = {
     def timesSimple(a: List[Int], b: Int, c: Int, result: List[Int]): List[Int] = a match {
@@ -67,6 +71,10 @@ object LongNumber {
     timesR(a, b, Nil, 0)
   }
 
+
+
+  // - Addition --------------------------------------------------------------------------------------------------------
+  // -------------------------------------------------------------------------------------------------------------------
   // Adds the content of the specified lists.
   private def add(a: List[Int], b: List[Int]) = {
     // Sums a.head, b.head and c, returns the result and remaining parts of a and b.
