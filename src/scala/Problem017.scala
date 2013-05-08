@@ -10,6 +10,14 @@
  */
 import collection.mutable._
 
+// This is probably overkill, but works fast until 9.999 (and can easily be adapted to bigger values).
+// The code maintains a cache of all known values. This cache is pre-filled with:
+// - numbers whose length can't be computed (1 to 19)
+// - convenience numbers (20, 30, ..., 90) - these could be incorporated in the algorithm, but precomputing them
+//   makes it much clearer.
+// - all hundreds (100, 200, ..., 900) because it makes computing the length of number greaters than 99 so much easier:
+//   I don't have to worry about checking whether a number should be written "... hundred and ..." or "... hundred".    
+
 object Cache {
   // Stores the number of characters that must be added for each 'depth'.
   val depthLengths = Array(0, 0, "hundredand".length, "thousand".length)

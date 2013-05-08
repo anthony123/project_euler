@@ -28,6 +28,16 @@
  * 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
  */
 
+// From the bottom up:
+// - consider each 2 by 2 triangle, from the left to the right.
+// - turn each triangle in a single value: the sum of its head and the maximum value of its base
+//   For example:
+//   4
+//   1 2
+//   => 4 + max(1, 2) = 6
+// - remove the last line of the triangle
+//
+// Iterate this until the triangle is empty, the result is single remaining value.
 def solve(data: Array[Array[Int]]) = {
   import math.max
 

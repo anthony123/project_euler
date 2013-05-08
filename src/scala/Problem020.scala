@@ -7,9 +7,11 @@
  * Find the sum of the digits in the number 100!
  */
 
-def fact(n: Int, result: LongNumber = LongNumber(1)): LongNumber = {
+// Since we already have a class for multiplying arbitrarily long numbers together, this is trivial.
+// I'm quite happy with how easy to read implicit conversions make that code.
+def fact(n: Int, result: LongNumber = 1): LongNumber = {
   if(n == 0) result
-  else fact(n - 1, result * n)
+  else       fact(n - 1, result * n)
 }
 
 EulerTimer {fact(100).n.sum}

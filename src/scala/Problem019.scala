@@ -11,6 +11,12 @@
  * How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
  */
 
+// I'm sure there's a cleverer way of doing this:
+// - start on the 1 sunday of 1901
+// - add 7 days, adjust the date if this takes us over the end of the current month / current year
+// - if the day, after adjustement, is 1, we've found a sunday that falls on the first of the month
+// - stop as soon as the year is greater than 2000
+
 // Leap year: divisible by 4, or century and divisible by 400.
 def isLeapYear(year: Int) = year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
 
