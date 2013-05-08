@@ -47,6 +47,7 @@ def solve(data: Array[Array[Int]]) = {
 
 def parse(definition: String) = raw.split('\n').map(_.split(' ').map {_.toInt}).reverse
 
+// For problem 67, replace this by scala.io.Source.fromFile("/path/to/triangle.txt").mkString
 val raw = """75
 95 64
 17 47 82
@@ -64,3 +65,4 @@ val raw = """75
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
 
 EulerTimer {solve(parse(raw))}
+
