@@ -5,6 +5,12 @@
  * How many such routes are there through a 20x20 grid?
  */
 
+// This is made fairly simple by starting from the "goal": there are always exactly two ways to reach the goal:
+// from the bottom-left corner or the upper-right corner.
+// Consider both these corners as new goals in their own smaller rectangles, recurse.
+// This is made much faster by the fact that we cache known results and that the solution for a square of dimensions
+// (x, y) is the same as that for a square of dimensions (y, x).
+
 // Used to cache all known results.
 // The subtlety here lies in the fact that results are symetrical: result(a, b) == result(b, a)
 class Cache {
