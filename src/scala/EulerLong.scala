@@ -6,6 +6,20 @@ class EulerLong(val n: Long) {
 
   // Checks whether the current instance is a prime number.
   def isPrime: Boolean = (n > 1) && (primes.takeWhile {_ <= scala.math.sqrt(n)}.forall {n % _ != 0})
+
+  def divisors =  {
+    def divisorsR(m: Long, result: List[Long]): List[Long] = {
+      if(m == 1) result
+      else if(n % m == 0) {
+        val r = n / m
+        if(r == m) divisorsR(m - 1, r :: result)
+        else divisorsR(m - 1, m :: r :: result)
+      }
+      else divisorsR(m - 1, result)
+    }
+
+    divisorsR(math.sqrt(n).toLong, List(1))
+  }
 }
 
 object EulerLong {

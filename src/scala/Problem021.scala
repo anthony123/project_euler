@@ -8,39 +8,23 @@
  * Evaluate the sum of all the amicable numbers under 10000.
  */
 
-// This is not much better than brute force.
-// - divisors are computed straightforwardly. The only optimisation is that there's no point going over sqrt(n):
-//   if m is smaller than sqrt(n), and n is divisible by m, then (n / m) is both greater than sqrt(n) and a divisor of
-//   n.
-// - amiable numbers are also all evaluated, with the simple optimisation that we only ever evaluate d(d(n)) if
-//   d(n) is smaller than n - otherwise we've already evaluated it before and we're wasting cycles.
+// This is not much better than brute force: we're evaluating almost all amiable numbers, with the simple optimisation
+// that we only ever evaluate d(d(n)) if d(n) is smaller than n - otherwise we've already evaluated it before and we're
+// wasting cycles.
 
-// Returns the sum of n's proper divisors.
-def d(n: Int) = {
-  (2 to math.sqrt(n).toInt).foldLeft(1) {(total, m) =>
-    if(n % m == 0) {
-      val r = n / m
-      if(r == m) total + r
-      else total + r + m
-    }
-    else total
-  }
-}
+import EulerLong._
 
 // Solves the problem for the specified inclusive upper boundary.
-def solve(n: Int, result: Int = 0): Int =
+def solve(n: Long, result: Long = 0): Long =
   if(n == 1) result
 
   else {
-    val dn = d(n)
+    val dn = n.divisors.sum
 
     if(dn >= n) solve(n - 1, result)
-    else if(d(dn) == n) solve(n - 1, result + dn + n)
+    else if(dn.divisors.sum == n) solve(n - 1, result + dn + n)
     else solve(n - 1, result)
   }
 
-
-EulerTimer {
-  solve(9999)
-}
+EulerTimer {solve(9999)}
 
