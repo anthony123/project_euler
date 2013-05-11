@@ -8,17 +8,43 @@
   * even-valued terms.
   */
 
-// Alright, so I might have made this slightly more complicated than it really needs to be.
-def collectFibonnacci(max: Int)(accept: (Int => Boolean)) = {
-  def collectR(n2: Int, n1: Int, result: List[Int]): List[Int] = {
-    val n = n1 + n2
+// This solution is based on two properties:
+// 1) F(n) is even if n is a multiple of 3
+// 2) F(n) = 4 * F(n - 3) + F(n - 6)
+//
+// Proof for 1):
+// - F(3) = F(2) + F(1) = 1 + 1 = 2
+// - F(n) is even and n is a multiple of 3.
+//   F(n + 1) = F(n) + F(n - 1), with F(n) even and F(n - 1) odd => F(n + 1) is odd.
+//   F(n + 2) = F(n + 1) + F(n), odd for the same reason.
+//   F(n + 3) = F(n + 2) + F(n + 1)
+//            = 2 * F(n + 1) + F(n)
+//            => F(n) is even, 2 * F(n + 1) is even => F(n + 3) is even.
+//
+// Proof for 2):
+// F(n) = F(n - 1) + F(n - 2)
+//      = 2 * F(n - 2) + F(n - 3)
+//      = 3 * F(n - 3) + 2 * F(n - 4)
+//      = 3 * F(n - 3) + F(n - 4) + F(n - 5) + F(n - 6)
+//      = 3 * F(n - 3) + F(n - 3) + F(n - 6)
+//      = 4 * F(n - 3) + F(n - 6)
+//
+// With these two properties proven, we can create the sequence of even Fibonacci numbers E(n) such that:
+// E(n) = F(3 * n)
+//      = 4 * F(3 * (n - 3)) + F(3 * (n - 2))
+//      = 4 * E(n - 3) + E(n - 2)
+
+// This could be made faster by returning the sum of even fibonacci numbers, but I find it more versatile to return
+// a collection of these numbers and let the caller do what he wants with them.
+def evenFibonacci(max: Int) = {
+  def evenFibonacciR(n2: Int, n1: Int, result: List[Int]): List[Int] = {
+    val n = 4 * n1 + n2
 
     if(n > max) result
-    else if(accept(n)) collectR(n1, n, n :: result)
-    else collectR(n1, n, result)
+    else evenFibonacciR(n1, n, n :: result)
   }
 
-  collectR(1, 2, 2 :: Nil)
+  evenFibonacciR(2, 8, 2 :: 8 :: Nil)
 }
 
-EulerTimer {collectFibonnacci(4000000) {_ % 2 == 0}.sum}
+EulerTimer {evenFibonacci(4000000).sum}
