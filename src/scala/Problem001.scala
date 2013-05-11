@@ -5,6 +5,7 @@
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
 
+// Sums all number betweet 0 and 'what' that are divisible by 'by'.
 def sumDivisibleBy(what: Int, by: Int) = {
   val p = (what - 1) / by
 
