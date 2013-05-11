@@ -5,9 +5,11 @@
  * Find the sum of all the multiples of 3 or 5 below 1000.
  */
 
-// A match is defined here as an int that's divisible by 3 or 5.
-def sumMatches(range: Range) = range.filter(x => x % 3 == 0 || x % 5 == 0).foldLeft(0) {_ + _}
+def sumDivisibleBy(what: Int, by: Int) = {
+  val p = (what - 1) / by
 
-assert(sumMatches(0 until 10) == 23)
+  by * (p * (p + 1)) / 2
+}
 
-EulerTimer {sumMatches(0 until 1000)}
+EulerTimer {sumDivisibleBy(1000, 3) + sumDivisibleBy(1000, 5) - sumDivisibleBy(1000, 15)}
+
