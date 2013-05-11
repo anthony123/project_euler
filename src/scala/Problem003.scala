@@ -3,25 +3,12 @@
  * 
  * What is the largest prime factor of the number 600851475143 ?
  */
-def findMaxPrimeFactor(n: Long) = {
-  import EulerLong._
 
-  def findR(n: Long, primes: Stream[Long], result: List[Long]): List[Long] = {
-    // n isn't divisible anymore: we're done.
-    if(n.isPrime) n :: result
+// This problem is solved in our EulerLong class, in a relatively straightforward way: it computes the requested
+// number's prime factors and extracts the largest.
+// There might very well be a more clever approach, but this one has the advantage of being generic.
 
-    // n is still divisible, find its remaining prime factors.
-    else {
-      val m = primes.head
+import EulerLong._
 
-      // We're not using primes.tail in the recursion because nothing says that prime factors can't be duplicated.
-      if(n % m == 0) findR(n / m, primes, m :: result)
-      else findR(n, primes.tail, result)
-    }
-  }
-
-  findR(n, primes, Nil).max
-}
-
-EulerTimer {findMaxPrimeFactor(600851475143l)}
+EulerTimer {600851475143l.primeFactors.max}
 
