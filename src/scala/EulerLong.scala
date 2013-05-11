@@ -10,7 +10,23 @@ class EulerLong(val n: Long) {
   def isPrime: Boolean = checkPrime(n)
 
   // Returns the current instance's prime factors.
-  def primeFactors() = divisors.filter {checkPrime}
+  def primeFactors() = {
+    def primeFactorsR(n: Long, primes: Stream[Long], result: List[Long]): List[Long] = {
+      // n isn't divisible anymore: we're done.
+      if(checkPrime(n)) n :: result
+
+      // n is still divisible, find its remaining prime factors.
+      else {
+        val m = primes.head
+
+        // We're not using primes.tail in the recursion because nothing says that prime factors can't be duplicated.
+        if(n % m == 0) primeFactorsR(n / m, primes, m :: result)
+        else primeFactorsR(n, primes.tail, result)
+      }
+    }
+
+    primeFactorsR(n, primes, Nil)
+  }
 
   // Returns the current instance's divisors.
   // The "clever" bit here is that there is no need to check for numbers larger than sqrt(n).
